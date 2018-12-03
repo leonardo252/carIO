@@ -209,4 +209,16 @@ class PostController extends Controller
         return redirect('carros_page'); 
         
     }
+
+    public function updSituacao(Request $request){
+        
+        $situacao = $request->input('situacao');
+        $carro = $request->input('idcarro');
+
+        $upd = DB::update('UPDATE carro SET situacao_idsituacao = ? WHERE idcarro = ?', [$situacao, $carro]);
+        
+        return redirect('saida_page');
+
+    }
+
 }

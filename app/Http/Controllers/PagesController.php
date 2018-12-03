@@ -42,7 +42,20 @@ class PagesController extends Controller
 	}
 
 	public function saida(){
-		return view('saida');
+
+		$now = \Carbon\Carbon::now();
+		
+		$carros = DB::select('SELECT * FROM carro WHERE data_saida <= ? AND situacao_idsituacao != (SELECT idsituacao FROM situacao WHERE situacao = ?)', [$now, "Entregue"]);
+		$clientes = DB::select('SELECT * FROM cliente');
+		$garagens = DB::select('SELECT * FROM garagem');
+		if($carros){
+			return view('saida')->with('carros', $carros)->with('clientes', $clientes)->with('garagens', $garagens);
+		}
+		else{
+			$carros = 0;
+			return view('saida')->with('carros', $carros)->with('clientes', $clientes)->with('garagens', $garagens);
+		}
+
 	}
 
 }

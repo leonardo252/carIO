@@ -39,3 +39,5 @@ Route::post('updatecar', 'PostController@updatecar');
 Route::post('destroycar', 'PostController@destroycar');
 
 Route::post('selectcar', 'PostController@selectcar');
+
+Route::post('updSituacao', 'PostController@updSituacao');
